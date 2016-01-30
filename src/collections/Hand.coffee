@@ -4,6 +4,7 @@ class window.Hand extends Backbone.Collection
   initialize: (array, @deck, @isDealer) ->
 
   hit: ->
+    console.log 'hit hit hit'
     @add(@deck.pop())
     @trigger 'hit', @
     @last()
@@ -24,3 +25,7 @@ class window.Hand extends Backbone.Collection
 
   stand: ->
     @trigger 'stand', @
+
+  finalScore: ->
+    both = @scores()
+    if both[1] > 21 then both[0] else both[1]
