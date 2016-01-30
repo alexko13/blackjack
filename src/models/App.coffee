@@ -6,19 +6,16 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     @get('playerHand').on('hit', @checkBust, @)
-    @get('dealerHand').on('hit', @checkBust, @)
     @get('playerHand').on('stand', @playDealer, @)
     undefined
 
   bindListeners: ->
     @get('playerHand').on('hit', @checkBust, @)
-    @get('dealerHand').on('hit', @checkBust, @)
     @get('playerHand').on('stand', @playDealer, @)
 
   playAgain:  -> 
     console.log 'playing again'
     @set 'playerHand', @get('deck').dealPlayer()
-    console.log("set player hand")
     @set 'dealerHand', @get('deck').dealDealer()
     @bindListeners()
     @get('deck').playAgain()
@@ -26,7 +23,10 @@ class window.App extends Backbone.Model
 
   checkBust: (hand) ->
     scores = hand.scores()
-    if scores[0] > 21
+    if scores[0] is 21 or scores[1] is 21
+      console.log 'black jack!'
+      @playDealer()
+    else if scores[0] > 21
       console.log 'bust'
       @playDealer()
 
@@ -45,7 +45,6 @@ class window.App extends Backbone.Model
     undefined
 
   playDealer: ->
-    console.log("playing dealer")
     dealer = @get 'dealerHand'
     firstCard = dealer.first()
     firstCard.flip() if not firstCard.get("revealed")
