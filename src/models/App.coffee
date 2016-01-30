@@ -28,6 +28,7 @@ class window.App extends Backbone.Model
     scores = hand.scores()
     if scores[0] > 21
       console.log 'bust'
+      @playDealer()
 
   compare: ->
     player = @get 'playerHand'
@@ -35,11 +36,11 @@ class window.App extends Backbone.Model
     playerScore = player.finalScore()
     dealerScore = dealer.finalScore()
 
-    if dealerScore > playerScore || playerScore > 21
+    if (dealerScore > playerScore and dealerScore <= 21) or playerScore > 21
      console.log("lost")
-    else if dealerScore < playerScore || dealerScore > 21
+    else if dealerScore < playerScore or dealerScore > 21
      console.log("won")
-    else if dealerScore == playerScore
+    else if dealerScore is playerScore
      console.log("tie")
     undefined
 
@@ -50,7 +51,7 @@ class window.App extends Backbone.Model
     firstCard.flip() if not firstCard.get("revealed")
     dealerFinalScore = dealer.finalScore()
     
-    if dealerFinalScore < 16
+    if dealerFinalScore <= 16
       dealer.hit()
       @playDealer()
     else
