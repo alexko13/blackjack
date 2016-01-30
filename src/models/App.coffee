@@ -3,10 +3,8 @@
 class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
-    @set 'playerHand', deck.dealPlayer()
-    @set 'dealerHand', deck.dealDealer()
-    @get('playerHand').on('hit', @checkBust, @)
-    @get('playerHand').on('stand', @playDealer, @)
+    @set 'playerHand', new Hand()
+    @set 'dealerHand', new Hand(null, null, true);
     undefined
 
   bindListeners: ->
