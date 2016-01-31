@@ -37,10 +37,13 @@ class window.App extends Backbone.Model
 
     if (dealerScore > playerScore and dealerScore <= 21) or playerScore > 21
      console.log("lost")
+     @get("playerBank").lose()
     else if dealerScore < playerScore or dealerScore > 21
      console.log("won")
+     @get('playerBank').win()
     else if dealerScore is playerScore
      console.log("tie")
+     @get("playerBank").tie()
     undefined
 
   playDealer: ->

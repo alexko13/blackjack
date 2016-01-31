@@ -1,7 +1,8 @@
 class window.Bank extends Backbone.Model
 
   initialize: ->
-    @set "bankroll", 500
+    @set "bankroll", 50
+    @set "currentBet", 0
 
   getChipCounts: ->
     runningBankroll = @get "bankroll"
@@ -9,8 +10,8 @@ class window.Bank extends Backbone.Model
     chipObj = {}
 
     for chip in [1,5,10,25,50,100,500]
-      runningBankroll -= chip
-      if runningBankroll > 0
+      if runningBankroll >= chip
+        runningBankroll -= chip
         chipObj[chip] = 1
 
     func = (chip) ->
@@ -24,15 +25,24 @@ class window.Bank extends Backbone.Model
     chipObj	
 
   bet: (bet) ->
-    @set "bankroll", @get "bankroll" - bet
-    @set "currentBet", bet
+    console.log bet
+    @set "bankroll", ((@get "bankroll") - bet)
+    console.log @get 'bankroll'
+    @set "currentBet", ((@get "currentBet") + bet)
 
   win: ->
-    @set "bankroll", @get "bankroll" + @get "currentBet" * 2
+    @set "bankroll", ((@get "bankroll") + ((@get "currentBet") * 2))
     @set "currentBet", 0
 
   winBlackJack: ->
-    @set "bankroll", @get "bankroll" + @get "currentBet" * 2.5
+    @set "bankroll", ((@get "bankroll") + ((@get "currentBet") * 2.5))
+    @set "currentBet", 0
+
+  tie: ->
+    @set "bankroll", (@get "bankroll") + (@get "currentBet")
+    @set "currentBet", 0
+  
+  lose: ->
     @set "currentBet", 0
 
  # 1 5 10 25 50 100 500 
