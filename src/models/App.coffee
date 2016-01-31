@@ -2,9 +2,10 @@
 # of containing the game logic directly.
 class window.App extends Backbone.Model
   initialize: ->
-    @set 'deck', deck = new Deck()
+    @set 'deck', new Deck()
+    @set 'playerBank', new Bank()
     @set 'playerHand', new Hand()
-    @set 'dealerHand', new Hand(null, null, true);
+    @set 'dealerHand', new Hand(null, null, true)
     undefined
 
   bindListeners: ->

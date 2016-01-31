@@ -10,3 +10,40 @@
 .hand {
   overflow: auto;
 }
+
+.chip {
+  display: inline-block;
+  text-align: center;
+  background-color: darkgrey;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+
+[data-value="1"] {
+  background-color: red;
+}
+
+[data-value="5"] {
+  background-color: green;
+}
+
+[data-value="10"] {
+  background-color: yellow;
+}
+
+[data-value="25"] {
+  background-color: lightblue;
+}
+
+[data-value="50"] {
+  background-color: pink;
+}
+
+[data-value="100"] {
+  background-color: orange;
+}
+
+[data-value="500"] {
+  background-color: darkgrey;
+}
