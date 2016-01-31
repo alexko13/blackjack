@@ -17,7 +17,7 @@ class window.App extends Backbone.Model
     @set 'playerHand', @get('deck').dealPlayer()
     @set 'dealerHand', @get('deck').dealDealer()
     @bindListeners()
-    @get('deck').playAgain()
+    @get('playerBank').playAgain()
     undefined
 
   checkBust: (hand) ->

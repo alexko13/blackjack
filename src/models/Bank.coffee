@@ -45,6 +45,9 @@ class window.Bank extends Backbone.Model
   lose: ->
     @set "currentBet", 0
 
+  playAgain: ->
+    @trigger 'newGame', @  
+
  # 1 5 10 25 50 100 500 
 
  # goes through chiptyps adding one of each until runningbankroll is empty

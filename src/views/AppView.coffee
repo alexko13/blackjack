@@ -14,7 +14,7 @@ class window.AppView extends Backbone.View
     'click .chip': (event) -> @model.get('playerBank').bet($(event.target).closest("div").data("value"))
 
   initialize: ->
-    @model.get('deck').on('newGame', @render, @)
+    @model.get('playerBank').on('newGame', @render, @)
     @render()
     
 

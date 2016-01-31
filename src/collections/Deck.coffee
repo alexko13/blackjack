@@ -11,6 +11,3 @@ class window.Deck extends Backbone.Collection
 
   dealDealer: ->  
     hand = new Hand [@pop().flip(), @pop()], @, true
-
-  playAgain: ->
-    @trigger 'newGame', @
