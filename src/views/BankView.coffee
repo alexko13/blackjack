@@ -7,14 +7,9 @@ class window.BankView extends Backbone.View
     @render()
     @model.on("change:currentBet", @render, @);
     @model.on("change:bankroll", @render, @);
-    @model.on("newGame", @removeChips, @);
-
-  removeChips: ->
-    # @$el.children.detach()
-    @$el.html @template @model.attributes
 
   render: ->
-    # @$el.children().detach()
+    @$el.children().detach()
     @$el.html @template @model.attributes
     for chipType, numChips of @model.getChipCounts()
       for num in [0...numChips]

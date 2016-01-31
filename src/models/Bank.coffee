@@ -33,17 +33,21 @@ class window.Bank extends Backbone.Model
   win: ->
     @set "bankroll", ((@get "bankroll") + ((@get "currentBet") * 2))
     @set "currentBet", 0
+    @trigger "endGame"
 
   winBlackJack: ->
     @set "bankroll", ((@get "bankroll") + ((@get "currentBet") * 2.5))
     @set "currentBet", 0
+    @trigger "endGame"
 
   tie: ->
     @set "bankroll", (@get "bankroll") + (@get "currentBet")
     @set "currentBet", 0
+    @trigger "endGame"
   
   lose: ->
     @set "currentBet", 0
+    @trigger "endGame"
 
   playAgain: ->
     @trigger 'newGame', @  

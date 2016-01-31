@@ -8,6 +8,7 @@ class window.CardView extends Backbone.View
   srcTemplate: _.template 'img/cards/<%= rankName %>-<%= suitName %>.png'
 
   initialize: -> @render()
+  	
 
   render: ->
     @$el.children().detach()

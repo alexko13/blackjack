@@ -24,4 +24,3 @@ class window.AppView extends Backbone.View
     @$('.chip-container').html new BankView(model: @model.get 'playerBank').el
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
-
